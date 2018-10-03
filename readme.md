@@ -4,17 +4,13 @@
 * Identify what makes a good algorithm
 * Use Big-O Analysis to Evaluate Algorithms
 
-### Framing (10 min / 9:10)
+### Framing
 
-Last week we learned what an algorithm is and why they are so important to the field of computer science.  This week we'll learn about how programmers measure the efficiency of algorithms and which types of algorithms are the most efficient in terms of *time* and *memory* consumption.  
+Throughout this course, we have been using functions and ML models without much concern for training time or funtion exectuion time. However, with the use of Grid Search, SVM and Neural Nets or complex models and especially as we start using Big Data, we have and will continue to notice that our model training beigns to take signifigant computatial time. We can optimize for this by understaninf the concept of BIG O as it realtes to time and space complexity. In data science there is no only a trade off between bias and variance with our algorithms, but between complexity/accuracy and training time. In a world of inifinite computing power and time, this point becomes moot, but we don't live in that world and even so optimizing code is fundamental. 
 
-Who can remind me what the definition of an algorithm is?
+Our main concerns in terms of efficiency are *time* and *memory*. 
 
-To restate from last class, while we are still learning the fundamentals and are working with relatively *small inputs*, it is more important to have clean code, good interfaces, and bug-less applications. However, as our inputs grow in size, having efficient algorithms becomes extremely important!
-
-Our main concerns in terms of efficiency are *time* and *memory*. If our sites load slowly, users may leave. If our code takes up too much memory, it will be more expensive to host our sites.  
-
-## Run Time and Big-O Analysis (30 min / 9:40)
+## Run Time and Big-O Analysis 
 
 We can look at a program and say -- "Oh that took two seconds to run". But that two seconds is dependent on a lot of factors. That two seconds is for a very specific input - your computer on your network with a certain version of your programming language. Instead, we should generalize the algorithm's complexity.
 
@@ -26,7 +22,11 @@ A few notes on Big-O notation:
 * When we calculate the Big-O of the function, we are calculating the **worst** possible runtime for a given function.
 * Sometimes, Big-O notation is referred to as [asymptotic analysis](http://www.cs.cornell.edu/courses/cs3110/2013sp/supplemental/lectures/lec19-asymp/review.html).
 
-For time complexity, we want to count how many times the code is run in context of how large the input to the code is. For example, O(1) is a very efficient piece of code, O(N!) is very inefficient. Let's break this down into categories of Big-O.
+For time complexity, we want to count how many times the code is run in context of how large the input to the code is. For example, O(1) is a very efficient piece of code, O(N!) is very inefficient. Let's first look at an example of what time cplexity is and how it relates to Big O:
+
+[Big O Intro Video](https://www.youtube.com/watch?v=v4cd1O4zkGw)
+
+Lets now break this down into categories of Big-O.
 
 ### O(1) Complexity (aka Constant Complexity)
 
@@ -104,6 +104,7 @@ For the array `[1, 3, 5, 7, 9, 11, 13]`, if we want to find the index of the 5, 
 * The midpoint of the sub array from 1-7 or `[1, 3, 5]` is `3`.
 * This time, 5 is larger than 3, so we search the sub-array `[5]`. Since the midpoint of that array `5` is equal to the number we are searching for, we just return that number.
 
+Let's checkout this video [Binary Search Video](https://www.youtube.com/watch?v=P3YID7liBug)
 Let's checkout a ***[visualization](https://www.cs.usfca.edu/~galles/visualization/Search.html)***
 
 An implementation of that algorithm is below:
@@ -171,10 +172,209 @@ The following table shows how algorithms with different complexities scale when 
 |O(2^N)     |1|1024    |1267650600228229401496703205376|       
 |O(N!)      |1|3628800 |doesn't fit on screen! |
 
+<code>
+    <table class="table table-bordered table-striped">
 
-Let's look at this demo in javascript...
-- Code: [JS](https://git.generalassemb.ly/ga-wdi-lessons/cs-algorithms/blob/master/js-example/script.js), [HTML](https://git.generalassemb.ly/ga-wdi-lessons/cs-algorithms/blob/master/js-example/index.html)
-- [Deployed](http://aboard-thought.surge.sh)
+    <tbody><tr>
+      <th>Data Structure</th>
+      <th colspan="8">Time Complexity</th>
+      <th>Space Complexity</th>
+    </tr>
+    <tr>
+      <th></th>
+      <th colspan="4">Average</th>
+      <th colspan="4">Worst</th>
+      <th>Worst</th>
+    </tr>
+    <tr>
+      <th></th>
+      <th>Access</th>
+      <th>Search</th>
+      <th>Insertion</th>
+      <th>Deletion</th>
+      <th>Access</th>
+      <th>Search</th>
+      <th>Insertion</th>
+      <th>Deletion</th>
+      <th></th>
+    </tr>
+
+    <tr>
+      <td><a href="http://en.wikipedia.org/wiki/Array_data_structure">Array</a></td>
+      <td><code class="green">Θ(1)</code></td>
+      <td><code class="yellow">Θ(n)</code></td>
+      <td><code class="yellow">Θ(n)</code></td>
+      <td><code class="yellow">Θ(n)</code></td>
+      <td><code class="green">O(1)</code></td>
+      <td><code class="yellow">O(n)</code></td>
+      <td><code class="yellow">O(n)</code></td>
+      <td><code class="yellow">O(n)</code></td>
+      <td><code class="yellow">O(n)</code></td>
+    </tr>
+    <tr>
+      <td><a href="http://en.wikipedia.org/wiki/Stack_(abstract_data_type)">Stack</a></td>
+      <td><code class="yellow">Θ(n)</code></td>
+      <td><code class="yellow">Θ(n)</code></td>
+      <td><code class="green">Θ(1)</code></td>
+      <td><code class="green">Θ(1)</code></td>
+      <td><code class="yellow">O(n)</code></td>
+      <td><code class="yellow">O(n)</code></td>
+      <td><code class="green">O(1)</code></td>
+      <td><code class="green">O(1)</code></td>
+      <td><code class="yellow">O(n)</code></td>
+    </tr>
+    <tr>
+      <td><a href="http://en.wikipedia.org/wiki/Queue_(abstract_data_type)">Queue</a></td>
+      <td><code class="yellow">Θ(n)</code></td>
+      <td><code class="yellow">Θ(n)</code></td>
+      <td><code class="green">Θ(1)</code></td>
+      <td><code class="green">Θ(1)</code></td>
+      <td><code class="yellow">O(n)</code></td>
+      <td><code class="yellow">O(n)</code></td>
+      <td><code class="green">O(1)</code></td>
+      <td><code class="green">O(1)</code></td>
+      <td><code class="yellow">O(n)</code></td>
+    </tr>
+    <tr>
+      <td><a href="http://en.wikipedia.org/wiki/Singly_linked_list#Singly_linked_lists">Singly-Linked List</a></td>
+      <td><code class="yellow">Θ(n)</code></td>
+      <td><code class="yellow">Θ(n)</code></td>
+      <td><code class="green">Θ(1)</code></td>
+      <td><code class="green">Θ(1)</code></td>
+      <td><code class="yellow">O(n)</code></td>
+      <td><code class="yellow">O(n)</code></td>
+      <td><code class="green">O(1)</code></td>
+      <td><code class="green">O(1)</code></td>
+      <td><code class="yellow">O(n)</code></td>
+    </tr>
+    <tr>
+      <td><a href="http://en.wikipedia.org/wiki/Doubly_linked_list">Doubly-Linked List</a></td>
+      <td><code class="yellow">Θ(n)</code></td>
+      <td><code class="yellow">Θ(n)</code></td>
+      <td><code class="green">Θ(1)</code></td>
+      <td><code class="green">Θ(1)</code></td>
+      <td><code class="yellow">O(n)</code></td>
+      <td><code class="yellow">O(n)</code></td>
+      <td><code class="green">O(1)</code></td>
+      <td><code class="green">O(1)</code></td>
+      <td><code class="yellow">O(n)</code></td>
+    </tr>
+    <tr>
+      <td><a href="http://en.wikipedia.org/wiki/Skip_list">Skip List</a></td>
+      <td><code class="yellow-green">Θ(log(n))</code></td>
+      <td><code class="yellow-green">Θ(log(n))</code></td>
+      <td><code class="yellow-green">Θ(log(n))</code></td>
+      <td><code class="yellow-green">Θ(log(n))</code></td>
+      <td><code class="yellow">O(n)</code></td>
+      <td><code class="yellow">O(n)</code></td>
+      <td><code class="yellow">O(n)</code></td>
+      <td><code class="yellow">O(n)</code></td>
+      <td><code class="orange">O(n log(n))</code></td>
+    </tr>
+    <tr>
+      <td><a href="http://en.wikipedia.org/wiki/Hash_table">Hash Table</a></td>
+      <td><code class="gray">N/A</code></td>
+      <td><code class="green">Θ(1)</code></td>
+      <td><code class="green">Θ(1)</code></td>
+      <td><code class="green">Θ(1)</code></td>
+      <td><code class="gray">N/A</code></td>
+      <td><code class="yellow">O(n)</code></td>
+      <td><code class="yellow">O(n)</code></td>
+      <td><code class="yellow">O(n)</code></td>
+      <td><code class="yellow">O(n)</code></td>
+    </tr>
+    <tr>
+      <td><a href="http://en.wikipedia.org/wiki/Binary_search_tree">Binary Search Tree</a></td>
+      <td><code class="yellow-green">Θ(log(n))</code></td>
+      <td><code class="yellow-green">Θ(log(n))</code></td>
+      <td><code class="yellow-green">Θ(log(n))</code></td>
+      <td><code class="yellow-green">Θ(log(n))</code></td>
+      <td><code class="yellow">O(n)</code></td>
+      <td><code class="yellow">O(n)</code></td>
+      <td><code class="yellow">O(n)</code></td>
+      <td><code class="yellow">O(n)</code></td>
+      <td><code class="yellow">O(n)</code></td>
+    </tr>
+    <tr>
+      <td><a href="https://en.wikipedia.org/wiki/Cartesian_tree">Cartesian Tree</a></td>
+      <td><code class="gray">N/A</code></td>
+      <td><code class="yellow-green">Θ(log(n))</code></td>
+      <td><code class="yellow-green">Θ(log(n))</code></td>
+      <td><code class="yellow-green">Θ(log(n))</code></td>
+      <td><code class="gray">N/A</code></td>
+      <td><code class="yellow">O(n)</code></td>
+      <td><code class="yellow">O(n)</code></td>
+      <td><code class="yellow">O(n)</code></td>
+      <td><code class="yellow">O(n)</code></td>
+    </tr>
+    <tr>
+      <td><a href="http://en.wikipedia.org/wiki/B_tree">B-Tree</a></td>
+      <td><code class="yellow-green">Θ(log(n))</code></td>
+      <td><code class="yellow-green">Θ(log(n))</code></td>
+      <td><code class="yellow-green">Θ(log(n))</code></td>
+      <td><code class="yellow-green">Θ(log(n))</code></td>
+      <td><code class="yellow-green">O(log(n))</code></td>
+      <td><code class="yellow-green">O(log(n))</code></td>
+      <td><code class="yellow-green">O(log(n))</code></td>
+      <td><code class="yellow-green">O(log(n))</code></td>
+      <td><code class="yellow">O(n)</code></td>
+    </tr>
+    <tr>
+      <td><a href="http://en.wikipedia.org/wiki/Red-black_tree">Red-Black Tree</a></td>
+      <td><code class="yellow-green">Θ(log(n))</code></td>
+      <td><code class="yellow-green">Θ(log(n))</code></td>
+      <td><code class="yellow-green">Θ(log(n))</code></td>
+      <td><code class="yellow-green">Θ(log(n))</code></td>
+      <td><code class="yellow-green">O(log(n))</code></td>
+      <td><code class="yellow-green">O(log(n))</code></td>
+      <td><code class="yellow-green">O(log(n))</code></td>
+      <td><code class="yellow-green">O(log(n))</code></td>
+      <td><code class="yellow">O(n)</code></td>
+    </tr>
+    <tr>
+      <td><a href="https://en.wikipedia.org/wiki/Splay_tree">Splay Tree</a></td>
+      <td><code class="gray">N/A</code></td>
+      <td><code class="yellow-green">Θ(log(n))</code></td>
+      <td><code class="yellow-green">Θ(log(n))</code></td>
+      <td><code class="yellow-green">Θ(log(n))</code></td>
+      <td><code class="gray">N/A</code></td>
+      <td><code class="yellow-green">O(log(n))</code></td>
+      <td><code class="yellow-green">O(log(n))</code></td>
+      <td><code class="yellow-green">O(log(n))</code></td>
+      <td><code class="yellow">O(n)</code></td>
+    </tr>
+    <tr>
+      <td><a href="http://en.wikipedia.org/wiki/AVL_tree">AVL Tree</a></td>
+      <td><code class="yellow-green">Θ(log(n))</code></td>
+      <td><code class="yellow-green">Θ(log(n))</code></td>
+      <td><code class="yellow-green">Θ(log(n))</code></td>
+      <td><code class="yellow-green">Θ(log(n))</code></td>
+      <td><code class="yellow-green">O(log(n))</code></td>
+      <td><code class="yellow-green">O(log(n))</code></td>
+      <td><code class="yellow-green">O(log(n))</code></td>
+      <td><code class="yellow-green">O(log(n))</code></td>
+      <td><code class="yellow">O(n)</code></td>
+    </tr>
+    <tr>
+      <td><a href="http://en.wikipedia.org/wiki/K-d_tree">KD Tree</a></td>
+      <td><code class="yellow-green">Θ(log(n))</code></td>
+      <td><code class="yellow-green">Θ(log(n))</code></td>
+      <td><code class="yellow-green">Θ(log(n))</code></td>
+      <td><code class="yellow-green">Θ(log(n))</code></td>
+      <td><code class="yellow">O(n)</code></td>
+      <td><code class="yellow">O(n)</code></td>
+      <td><code class="yellow">O(n)</code></td>
+      <td><code class="yellow">O(n)</code></td>
+      <td><code class="yellow">O(n)</code></td>
+    </tr>
+
+</tbody></table>
+</code>
+
+![](http://www.bigocheatsheet.com/img/big-o-cheat-sheet-poster.png)
+
+[Sorting Algorithms Visual Time Complexity](https://www.youtube.com/watch?v=BeoCbJPuvSE)
+
 
 ### You Do: Study Big-O Families (10 min / 9:50)
 
