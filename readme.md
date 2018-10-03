@@ -172,8 +172,7 @@ The following table shows how algorithms with different complexities scale when 
 |O(2^N)     |1|1024    |1267650600228229401496703205376|       
 |O(N!)      |1|3628800 |doesn't fit on screen! |
 
-    <table class="table table-bordered table-striped">
-
+<table class="table table-bordered table-striped">
     <tbody><tr>
       <th>Data Structure</th>
       <th colspan="8">Time Complexity</th>
@@ -366,8 +365,8 @@ The following table shows how algorithms with different complexities scale when 
       <td><code class="yellow">O(n)</code></td>
       <td><code class="yellow">O(n)</code></td>
     </tr>
-
-</tbody></table>
+</tbody>
+</table>
 
 ![](http://www.bigocheatsheet.com/img/big-o-cheat-sheet-poster.png)
 
